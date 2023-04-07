@@ -1,28 +1,34 @@
-from flask import Flask, render_template,jsonify,request
+from flask import Flask, render_template, jsonify, request
 import random
 from database import full_db
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def page0():
   return render_template('home.html')
+
 
 @app.route("/ankieta")
 def page1():
   return render_template('ankieta.html')
 
+
 @app.route("/opis1")
 def page2():
   return render_template('opis1.html')
+
 
 @app.route('/colors')
 def page4():
   return render_template('colors.html')
 
+
 @app.route("/opis2")
 def page5():
   return render_template('opis2.html')
+
 
 @app.route('/get_color')
 def get_color():
@@ -30,9 +36,10 @@ def get_color():
   color = random.choice(colors)
   return jsonify(color)
 
+
 @app.route('/get_data')
 def get_data():
-  sizes = [125,150,100]
+  sizes = [125, 150, 100]
   numbers = random.sample(range(1, 9), 2)
   bigger_circle = random.choice([0, 1])
   if numbers[0] > numbers[1]:
@@ -48,16 +55,18 @@ def get_data():
   }
   return jsonify(data)
 
+
 @app.route("/kolka")
 def page6():
   return render_template('kolka.html')
-  
+
 
 @app.route("/final", methods=['get'])
 def page7():
-    data = request.args
-    full_db(data)
-    return render_template('final.html',data=data)
-  
+  data = request.args
+  full_db(data)
+  return render_template('final.html', data=data)
+
+
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)
