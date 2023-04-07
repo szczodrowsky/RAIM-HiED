@@ -1,4 +1,3 @@
-import sqlalchemy
 from sqlalchemy import create_engine, text
 import os
 
@@ -17,8 +16,18 @@ engine = create_engine(
   }
  )
 
-
-with engine.connect() as conn:
-  result = conn.execute(text("select * from koncentracja"))
-  print(result.all())
   
+def full_db(koncentracja):
+  with engine.connect() as conn:
+    query = text("INSERT INTO koncentracja (plec, wiek, godzina, miejsce, samopoczucie, koncentracja, problemy, pora_dnia,miejsce_koncentracja ) VALUES (:plec, :wiek, :godzina, :miejsce, :samopoczucie, :koncentracja, :problemy, :pora_dnia,:miejsce_koncentracja)")
+    
+    conn.execute(query, 
+                 {'wiek': koncentracja['plec'], 
+                  'plec': koncentracja['wiek'],
+                  'godzina': koncentracja['godzina'],
+                  'miesce': koncentracja['miesce'],
+                  'koncentracja': koncentracja['koncentracja'],
+                  'problemy': koncentracja['problemy'],
+                  'pora_dnia': koncentracja['pora_dnia'],
+                  'miejsce_koncentracja': koncentracja['miejsce_koncentracja'],
+                 })

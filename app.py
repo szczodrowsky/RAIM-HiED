@@ -1,5 +1,6 @@
-from flask import Flask, render_template,jsonify
+from flask import Flask, render_template,jsonify,request
 import random
+from database import full_db
 
 app = Flask(__name__)
 
@@ -52,9 +53,11 @@ def page6():
   return render_template('kolka.html')
   
 
-@app.route("/final")
+@app.route("/final", methods=['get'])
 def page7():
-  return render_template('final.html')
+    data = request.args
+    full_db(data)
+    return render_template('final.html',data=data)
   
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)

@@ -7,117 +7,113 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body> 
+    <form action="/ankieta" method="get">
     <div class="container">
-      <h1 > Formularz osobowy</h1>
-      <p>
-        <label>Płeć:</label><br>
+      <h1>Formularz osobowy</h1>
+      <form action="/ankieta" method="get">
+        <p>
+          <label>Płeć:</label><br>
           <label>
-           <input type="radio" name="Gender" value="Kobieta">
-          Kobieta
+            <input type="radio" name="plec" value="Kobieta">
+            Kobieta
           </label>
           <label>
-           <input type="radio" name="Gender" value="Mężczyzna">
-          Męszczyzna
+            <input type="radio" name="plec" value="Mężczyzna">
+            Mężczyzna
           </label>
-      </p>
-      <p>
-        <form>
-        <label>Wiek:</label><br>
-           <input type="text" name="fname"><br>
-        </form>
-      </p>
-      <p>
-        <form>
-        <label>Godzina wykonywania testu:</label><br>
-           <input type="text" name="fname"><br>
-        </form>
-      </p>
-      <p>
-        <label >Miejsce wykonywania testu:</label><br>
-           <label>
-           <input type="radio" name="Place" value="Home">
-          W domu
-          </label>
-        <br>
-          <label>
-           <input type="radio" name="Place" value="Public">
-          W miejscu publicznym
-          </label>
-      </p>
-         <p>
-          <label>Jak się dziś czujesz oceń swoje</label><br>
-           <label>Samopoczucie:</label><br>
-            <input type="radio" name="wellbeing" value="1">
-            <label for="1"> 1 (złe)</label><br>
-            <input type="radio" name="wellbeing" value="2">
-            <label for="2"> 2</label><br>
-            <input type="radio" name="wellbeing" value="3">
-            <label for="3"> 3</label><br>
-            <input type="radio" name="wellbeing" value="4">
-            <label for="4"> 4</label><br>
-            <input type="radio" name="wellbeing" value="5">
-            <label for="5"> 5 (wyśmienite)</label><br>
         </p>
-       <p>
-          <label>W skali od 1-5 jak oceniasz<br>
-            swoją zdolność koncentracji :</label><br>
-            <input type="radio" name="skill" value="1">
-            <label for="1"> 1 (złe)</label><br>
-            <input type="radio" name="skill" value="2">
-            <label for="2"> 2</label><br>
-            <input type="radio" name="skill" value="3">
-            <label for="3"> 3</label><br>
-            <input type="radio" name="skill" value="4">
-            <label for="4"> 4</label><br>
-            <input type="radio" name="skill" value="5">
-            <label for="5"> 5 (wyśmienite)</label><br>
+        <p>
+          <label>Wiek:</label><br>
+          <input type="text" name="wiek"><br>
         </p>
-       <p>
+        <p>
+          <label>Godzina wykonywania testu:</label><br>
+          <input type="text" name="godzina"><br>
+        </p>
+        <p>
+          <label>Miejsce wykonywania testu:</label><br>
+          <label>
+            <input type="radio" name="miejsce" value="Home">
+            W domu
+          </label>
+          <br>
+          <label>
+            <input type="radio" name="miejsce" value="Public">
+            W miejscu publicznym
+          </label>
+        </p>
+        <p>
+          <label>Jak się dziś czujesz? Oceń swoje samopoczucie:</label><br>
+          <label>Samopoczucie:</label><br>
+          <input type="radio" name="samopoczucie" value="1">
+          <label for="1"> 1 (złe)</label><br>
+          <input type="radio" name="samopoczucie" value="2">
+          <label for="2"> 2</label><br>
+          <input type="radio" name="samopoczucie" value="3">
+          <label for="3"> 3</label><br>
+          <input type="radio" name="samopoczucie" value="4">
+          <label for="4"> 4</label><br>
+          <input type="radio" name="samopoczucie" value="5">
+          <label for="5"> 5 (wyśmienite)</label><br>
+        </p>
+        <p>
+          <label>W skali od 1-5 jak oceniasz swoją zdolność koncentracji:</label><br>
+          <input type="radio" name="koncentracja" value="1">
+          <label for="1"> 1 (złe)</label><br>
+          <input type="radio" name="koncentracja" value="2">
+          <label for="2"> 2</label><br>
+          <input type="radio" name="koncentracja" value="3">
+          <label for="3"> 3</label><br>
+          <input type="radio" name="koncentracja" value="4">
+          <label for="4"> 4</label><br>
+          <input type="radio" name="koncentracja" value="5">
+          <label for="4"> 5</label><br>
+
+
           <label>W skali od 1-5 jak często masz <br> problemy ze skupieniem się</label><br>
-            <input type="radio" name="concentration" value="1">
+            <input type="radio" name="problemy" value="1">
             <label for="1"> 1 (praktycznie wcale)</label><br>
-            <input type="radio" name="concentration" value="2">
+            <input type="radio" name="problemy" value="2">
             <label for="2"> 2</label><br>
-            <input type="radio" name="concentration" value="3">
+            <input type="radio" name="problemy" value="3">
             <label for="3"> 3</label><br>
-            <input type="radio" name="concentration" value="4">
+            <input type="radio" name="problemy" value="4">
             <label for="4"> 4</label><br>
-            <input type="radio" name="concentration" value="5">
+            <input type="radio" name="problemy" value="5">
             <label for="5"> 5 (wszystko mnie rozprasza)</label><br>
         </p>
-       <p>
-        <label >Czy uważasz, że pora dnia wpływa na koncentrację?</label><br>
-           <label>
-           <input type="radio" name="day" value="Yes">
-          Tak
-          </label>
-        <br>
+   <p>
+          <label>Czy uważasz, że pora dnia wpływa na koncentrację?</label><br>
           <label>
-           <input type="radio" name="day" value="No">
-          Nie
-          </label>
-      </p>
-  <label >Czy uważasz, że miejsce wpływa na koncentrację?</label><br>
-           <label>
-           <input type="radio" name="place" value="Yes">
-          Tak
-          </label>
-        <br>
+            <input type="radio" name="pora_dnia" value="Tak">
+            Tak
+          </label><br>
           <label>
-           <input type="radio" name="place" value="No">
-          Nie
+            <input type="radio" name="pora_dnia" value="Nie">
+            Nie
           </label>
-      </p>
-    <br>
-       <a href = "/opis1">
-      <button> Następna strona </button> 
-       </a>
-       <br>
-    </div>
-    
-    <footer>
-       <br>
-      <p>2023 Copyright Szczodrowski && Makowiecki</p>
-    </footer>
+        </p>
+        <p>
+          <label>Czy uważasz, że miejsce wpływa na koncentrację?</label><br>
+          <label>
+            <input type="radio" name="miejsce_koncentracja" value="Tak">
+            Tak
+          </label><br>
+          <label>
+            <input type="radio" name="miejsce_koncentracja" value="Nie">
+            Nie
+          </label>
+        </p>
+        <br>
+        <a href="/2">
+          <button  name="submit">Następna strona</button> 
+        </a>
+        <br>
+      </div>
+      <footer>
+        <br>
+        <p>2023 © Szczodrowski && Makowiecki</p>
+      </footer>
+    </form>
   </body>
 </html>
