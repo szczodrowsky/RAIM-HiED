@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stroop Test</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-size: 36px;
+      }
+
+      #color-name {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 72px;
+        margin-bottom: 50px;
+      }
+
+      #color-button {
+        font-size: 36px;
+        padding: 20px 50px;
+      }
+
+      #result {
+        font-size: 48px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Stroop Test</h1>
+    <p id="color-name"></p>
+    <button id="color-button">Press when colors match</button>
+    <p id="result"></p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      var score = 0;
+      var attempts = 0;
+      
+      var timer;
+
+      function getColor() {
+        $.getJSON('/get_color', function(data) {
+          $('#color-name').text(data);
+          $('#color-name').css('color', randomColor());
+        });
+      }
+
+      function getRGB(color) {
+        var rgb;
+        switch (color) {
+          case 'red':
+            rgb = 'rgb(255, 0, 0)';
+            break;
+          case 'blue':
+            rgb = 'rgb(0, 0, 255)';
+            break;
+          case 'green':
+            rgb = 'rgb(0, 128, 0)';
+            break;
+        }
+        return rgb;
+      }
+
+      function randomColor() {
+        var colors = ['red', 'blue', 'green'];
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        return color;
+      }
+
+      function startTimer() {
+        timer = setTimeout(function() {
+          getColor();
+          startTimer();
+        }, 2000);
+      }
+
+      function stopTimer() {
+        clearTimeout(timer);
+      }
+
+
+
+      function checkAnswer() {
+        var color = $('#color-name').text().toLowerCase();
+        var textColor = $('#color-name').css('color');
+
+
+        if (textColor === getRGB(color)) {
+          score++;
+        }
+        attempts++;
+        $('#result').text('Score: ' + score + '/' + attempts);
+      
+      if (attempts === 5) {
+				alert('You have reached 5 attempts. Your score is ' + score + '/' + attempts);
+				score = 0;
+				attempts = 0;
+				counter = 0;
+				$('#result').text('');
+			}
+      }
+      $('#color-button').click(checkAnswer);
+      getColor();
+      startTimer();
+
+      $('#color-name').on('DOMSubtreeModified', function() {
+        stopTimer();
+        startTimer();
+      });
+    </script>
+    <br>
+    <a href = "/opis2"
+    <button>Dalej</button>
+    </a>
+  </body>
+</html>

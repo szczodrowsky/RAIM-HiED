@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="command">
+    <div id="command"></div>
+    </div>
+    <div class="circle-container">
+    <div id="circle1" class="circle"></div>
+    <div id="circle2" class="circle"></div>
+  </div>
+  <div class="command"></div>
+  <div id="score"></div>
+
+    <script>
+        var score = 0;
+
+        function getData() {
+            $.ajax({
+                url: "/get_data",
+                success: function(data) {
+                    var circle1 = document.getElementById('circle1');
+                    var circle2 = document.getElementById('circle2');
+                    circle1.style.width = data['sizes'][0] + 'px';
+                    circle1.style.height = data['sizes'][0] + 'px';
+                    circle1.innerHTML = data['numbers'][0];
+                    circle2.style.width = data['sizes'][1] + 'px';
+                    circle2.style.height = data['sizes'][1] + 'px';
+                    circle2.innerHTML = data['numbers'][1];
+
+                    var command = document.getElementById('command');
+                    command.innerHTML = data['command'];
+                }
+            });
+        }
+      
+     function updateScore(isLarger, command, data, clickedCircleId) {
+  var circle1 = document.getElementById('circle1');
+  var circle2 = document.getElementById('circle2');
+
+  if (command === "Kliknij większe koło") {
+    if (clickedCircleId === 'circle1') {
+      if (isLarger && data['sizes'][0] > data['sizes'][1]) {
+        score += 1;
+      }
+    } else {
+      if (!isLarger && data['sizes'][1] > data['sizes'][0]) {
+        score += 1;
+      }
+    }
+  } else if (command === "Wybierz większą cyfrę") {
+    if (clickedCircleId === 'circle1') {
+      if (isLarger && data['numbers'][0] > data['numbers'][1]) {
+        score += 1;
+      }
+    } else {
+      if (!isLarger && data['numbers'][1] > data['numbers'][0]) {
+        score += 1;
+      }
+    }
+  } 
+
+  var scoreDisplay = document.getElementById('score');
+  scoreDisplay.innerHTML = "Wynik: " + score;
+}
+
+
+
+        getData();
+
+        $('#circle1, #circle2').on('click', function() {
+            var circle1 = document.getElementById('circle1');
+            var circle2 = document.getElementById('circle2');
+            var number1 = parseInt(circle1.innerHTML);
+            var number2 = parseInt(circle2.innerHTML);
+            var isLarger = false;
+            var command = document.getElementById('command').innerHTML;
+            if (this.id === "circle1") {
+                if (number1 > number2) {
+                    isLarger = true;
+                }
+            } else {
+                if (number2 > number1) {
+                    isLarger = false;
+                }
+            }
+           updateScore(isLarger, command, {
+  'sizes': [parseInt(circle1.style.width), parseInt(circle2.style.width)],
+  'numbers': [number1, number2],
+  'command': document.getElementById('command').innerHTML
+}, this.id);
+          
+          console.log(command)
+          
+            getData();
+        });
+    </script>
+    <a href="/final">
+      <button>Wyślij</button>
+      
+    </a>
+  <style>
+ body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 50;
+}
+
+.circle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  width: 300px;
+  height: 300px;
+  font-size: 120px;
+  cursor: pointer;
+}
+
+.circle:hover {
+  background-color: darkgray;
+}
+
+#command, #score{
+  font-size: 36px;
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+      
+</style>
+</body>
+</html>
