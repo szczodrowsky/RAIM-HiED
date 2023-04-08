@@ -1,8 +1,21 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect
 import random
-from database import full_db
+import os
+from flask_sqlalchemy import SQLAlchemy
+from user import user
+
+db = SQLAlchemy()
+
+#Data Base
 
 app = Flask(__name__)
+
+db = SQLAlchemy()
+
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('db_conn')
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
 
 @app.route("/")
@@ -10,23 +23,53 @@ def page0():
   return render_template('home.html')
 
 
-@app.route("/ankieta")
-def page1():
+@app.route("/page2")
+def page2():
   return render_template('ankieta.html')
 
 
-@app.route("/opis1")
-def page2():
+@app.route('/page3', methods=['GET', 'POST'])
+def data_to_db():
+  try:
+    if request.method == 'POST':
+      plec = request.form['plec'],
+      wiek = request.form['wiek'],
+      godzina = request.form['godzina'],
+      miejsce = request.form['miejsce'],
+      koncentracja = request.form['koncentracja'],
+      problemy = request.form['problemy'],
+      pora_dnia = request.form['pora_dnia'],
+      miejsce_koncentracja = request.form['miejsce_koncentracja']
+
+    new_user = user(plec=plec,
+                    wiek=wiek,
+                    godzina=godzina,
+                    miejsce=miejsce,
+                    koncentracja=koncentracja,
+                    problemy=problemy,
+                    pora_dnia=pora_dnia,
+                    miejsce_koncentracja=miejsce_koncentracja)
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect('/page4')
+  except Exception as e:
+    db.session.rollback()
+    print(str(e))
+    return redirect('/erorr')
+
+
+@app.route('/page4')
+def page4():
   return render_template('opis1.html')
 
 
 @app.route('/colors')
-def page4():
+def page5():
   return render_template('colors.html')
 
 
 @app.route("/opis2")
-def page5():
+def page6():
   return render_template('opis2.html')
 
 
@@ -57,15 +100,13 @@ def get_data():
 
 
 @app.route("/kolka")
-def page6():
+def page7():
   return render_template('kolka.html')
 
 
-@app.route("/final", methods=['get'])
-def page7():
-  data = request.args
-  full_db(data)
-  return render_template('final.html', data=data)
+@app.route("/final")
+def page8():
+  return render_template('final.html')
 
 
 if __name__ == "__main__":

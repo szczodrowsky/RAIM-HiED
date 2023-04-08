@@ -1,5 +1,8 @@
 { pkgs }: {
   deps = [
+    pkgs.less
+    pkgs.sudo
+    pkgs.postgresql_14
     pkgs.python310Full
     pkgs.replitPackages.prybar-python310
     pkgs.replitPackages.stderred

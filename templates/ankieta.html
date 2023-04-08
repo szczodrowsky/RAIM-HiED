@@ -7,102 +7,102 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body> 
-    <form action="/opis1" method="get">
+    <form action="/page3" method="post"">
     <div class="container">
       <h1>Formularz osobowy</h1>
         <p>
           <label>Płeć:</label><br>
-            <input type="radio" name="plec" value="Kobieta">
+            <input type="radio" name="plec" value="Kobieta" id = "plec">
          <label> Kobieta</label>
           
-            <input type="radio" name="plec" value="Mężczyzna">
+            <input type="radio" name="plec" value="Mężczyzna" id = "plec">
          <label> Mężczyzna</label>
         </p>
         <p>
           <label>Wiek:</label><br>
-          <input type="text" name="wiek"><br>
+          <input type="text" name="wiek" id ="wiek"><br>
         </p>
         <p>
           <label>Godzina wykonywania testu:</label><br>
-          <input type="text" name="godzina"><br>
+          <input type="text" name="godzina" id="godzina"><br>
         </p>
         <p>
           <label>Miejsce wykonywania testu:</label><br>
           <label>
-            <input type="radio" name="miejsce" value="Home">
+            <input type="radio" name="miejsce" value="Home" id="miejsce">
             W domu
           </label>
           <br>
           <label>
-            <input type="radio" name="miejsce" value="Public">
+            <input type="radio" name="miejsce" value="Public" id="miejsce">
             W miejscu publicznym
           </label>
         </p>
         <p>
           <label>Jak się dziś czujesz? Oceń swoje samopoczucie:</label><br>
           <label>Samopoczucie:</label><br>
-          <input type="radio" name="samopoczucie" value="1">
+          <input type="radio" name="samopoczucie" value="1" id="samopoczucie">
           <label for="1"> 1 (złe)</label><br>
-          <input type="radio" name="samopoczucie" value="2">
+          <input type="radio" name="samopoczucie" value="2" id="samopoczucie">
           <label for="2"> 2</label><br>
-          <input type="radio" name="samopoczucie" value="3">
+          <input type="radio" name="samopoczucie" value="3" id="samopoczucie">
           <label for="3"> 3</label><br>
-          <input type="radio" name="samopoczucie" value="4">
+          <input type="radio" name="samopoczucie" value="4" id="samopoczucie">
           <label for="4"> 4</label><br>
-          <input type="radio" name="samopoczucie" value="5">
+          <input type="radio" name="samopoczucie" value="5" id="samopoczucie">
           <label for="5"> 5 (wyśmienite)</label><br>
         </p>
         <p>
           <label>W skali od 1-5 jak oceniasz swoją zdolność koncentracji:</label><br>
-          <input type="radio" name="koncentracja" value="1">
+          <input type="radio" name="koncentracja" value="1" id="koncentracja">
           <label for="1"> 1 (złe)</label><br>
-          <input type="radio" name="koncentracja" value="2">
+          <input type="radio" name="koncentracja" value="2" id="koncentracja">
           <label for="2"> 2</label><br>
-          <input type="radio" name="koncentracja" value="3">
+          <input type="radio" name="koncentracja" value="3" id="koncentracja">
           <label for="3"> 3</label><br>
-          <input type="radio" name="koncentracja" value="4">
+          <input type="radio" name="koncentracja" value="4" id="koncentracja">
           <label for="4"> 4</label><br>
-          <input type="radio" name="koncentracja" value="5">
+          <input type="radio" name="koncentracja" value="5" id="koncentracja">
           <label for="4"> 5</label><br>
 
 
           <label>W skali od 1-5 jak często masz <br> problemy ze skupieniem się</label><br>
-            <input type="radio" name="problemy" value="1">
+            <input type="radio" name="problemy" value="1" id="problemy">>
             <label for="1"> 1 (praktycznie wcale)</label><br>
-            <input type="radio" name="problemy" value="2">
+            <input type="radio" name="problemy" value="2" id="problemy">
             <label for="2"> 2</label><br>
-            <input type="radio" name="problemy" value="3">
+            <input type="radio" name="problemy" value="3" id="problemy">
             <label for="3"> 3</label><br>
-            <input type="radio" name="problemy" value="4">
+            <input type="radio" name="problemy" value="4" id="problemy">
             <label for="4"> 4</label><br>
-            <input type="radio" name="problemy" value="5">
+            <input type="radio" name="problemy" value="5" id="problemy">
             <label for="5"> 5 (wszystko mnie rozprasza)</label><br>
         </p>
    <p>
           <label>Czy uważasz, że pora dnia wpływa na koncentrację?</label><br>
           <label>
-            <input type="radio" name="pora_dnia" value="Tak">
+            <input type="radio" name="pora_dnia" value="Tak" id="pora_dnia">
             Tak
           </label><br>
           <label>
-            <input type="radio" name="pora_dnia" value="Nie">
+            <input type="radio" name="pora_dnia" value="Nie" id="pora_dnia">
             Nie
           </label>
         </p>
         <p>
           <label>Czy uważasz, że miejsce wpływa na koncentrację?</label><br>
           <label>
-            <input type="radio" name="miejsce_koncentracja" value="Tak">
+            <input type="radio" name="miejsce_koncentracja" value="Tak" id="miejsce_koncentracja">
             Tak
           </label><br>
           <label>
-            <input type="radio" name="miejsce_koncentracja" value="Nie">
+            <input type="radio" name="miejsce_koncentracja" value="Nie" id="miejsce_koncentracja">
             Nie
           </label>
         </p>
         <br>
-        <a href="/opis1">
-          <button  name="submit">Następna strona</button> 
+        <a href="/page4">
+          <button  type="submit"'>Następna strona</button> 
         </a>
         <br>
       </div>

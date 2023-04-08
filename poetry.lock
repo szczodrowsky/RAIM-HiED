@@ -36,6 +36,18 @@ async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
 
 [[package]]
+name = "flask-sqlalchemy"
+version = "3.0.3"
+description = "Add SQLAlchemy support to your Flask application."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Flask = ">=2.2"
+SQLAlchemy = ">=1.4.18"
+
+[[package]]
 name = "greenlet"
 version = "2.0.2"
 description = "Lightweight in-process concurrent programming"
@@ -137,12 +149,13 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c4fa688e868f4b0cc330bbd0563106c9454030a4e9e22eab9742c2981f1c5247"
+content-hash = "fc9ba004ebda3f904b217577f2a0ee9df4508547e11f39f243437873261b197e"
 
 [metadata.files]
 click = []
 colorama = []
 flask = []
+flask-sqlalchemy = []
 greenlet = []
 itsdangerous = []
 jinja2 = []
