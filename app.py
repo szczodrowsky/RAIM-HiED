@@ -17,10 +17,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('db_conn')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-
 @app.route("/")
 def page0():
-  return render_template('ankieta.html')
+  return render_template('opis1.html')
 
 
 @app.route("/page2")
