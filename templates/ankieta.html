@@ -1,6 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
+   <style>
+ 
+        /* Styling the Body element i.e. Color,
+        Font, Alignment */
+        body {
+            background-color: #ADD8E6;
+            font-family: Verdana;
+            text-align: center;
+        }
+ 
+        /* Styling the Form (Color, Padding, Shadow) */
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+ 
+        /* Styling form-control Class */
+        .form-control {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+ 
+        /* Styling form-control Label */
+        .form-control label {
+            display: block;
+            margin-bottom: 10px;
+        }
+ 
+        /* Styling form-control input,
+        select, textarea */
+        .form-control input,
+        .form-control select,
+        .form-control textarea {
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            padding: 10px;
+            display: block;
+            width: 95%;
+        }
+ 
+        /* Styling form-control Radio
+        button and Checkbox */
+        .form-control input[type="radio"],
+        .form-control input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+ 
+        /* Styling Button */
+        button {
+            background-color: #ADD8E6;
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 21px;
+            display: block;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formularz</title>
@@ -8,108 +73,104 @@
   </head>
   <body> 
     <form action="/page3" method="post"">
-    <div class="container">
       <h1>Formularz osobowy</h1>
-        <p>
-          <label>Płeć:</label><br>
-            <input type="radio" name="plec" value="Kobieta" id = "plec">
-         <label> Kobieta</label>
+        <form id="form">
           
-            <input type="radio" name="plec" value="Mężczyzna" id = "plec">
-         <label> Mężczyzna</label>
-        </p>
-        <p>
-          <label>Wiek:</label><br>
-          <input type="text" name="wiek" id ="wiek"><br>
-        </p>
-        <p>
-          <label>Godzina wykonywania testu:</label><br>
-          <input type="text" name="godzina" id="godzina"><br>
-        </p>
-        <p>
-          <label>Miejsce wykonywania testu:</label><br>
-          <label>
-            <input type="radio" name="miejsce" value="Home" id="miejsce">
-            W domu
-          </label>
-          <br>
-          <label>
-            <input type="radio" name="miejsce" value="Public" id="miejsce">
-            W miejscu publicznym
-          </label>
-        </p>
-        <p>
-          <label>Jak się dziś czujesz? Oceń swoje samopoczucie:</label><br>
-          <label>Samopoczucie:</label><br>
-          <input type="radio" name="samopoczucie" value="1" id="samopoczucie">
-          <label for="1"> 1 (złe)</label><br>
-          <input type="radio" name="samopoczucie" value="2" id="samopoczucie">
-          <label for="2"> 2</label><br>
-          <input type="radio" name="samopoczucie" value="3" id="samopoczucie">
-          <label for="3"> 3</label><br>
-          <input type="radio" name="samopoczucie" value="4" id="samopoczucie">
-          <label for="4"> 4</label><br>
-          <input type="radio" name="samopoczucie" value="5" id="samopoczucie">
-          <label for="5"> 5 (wyśmienite)</label><br>
-        </p>
-        <p>
-          <label>W skali od 1-5 jak oceniasz swoją zdolność koncentracji:</label><br>
-          <input type="radio" name="koncentracja" value="1" id="koncentracja">
-          <label for="1"> 1 (złe)</label><br>
-          <input type="radio" name="koncentracja" value="2" id="koncentracja">
-          <label for="2"> 2</label><br>
-          <input type="radio" name="koncentracja" value="3" id="koncentracja">
-          <label for="3"> 3</label><br>
-          <input type="radio" name="koncentracja" value="4" id="koncentracja">
-          <label for="4"> 4</label><br>
-          <input type="radio" name="koncentracja" value="5" id="koncentracja">
-          <label for="4"> 5</label><br>
+        <div class="form-control">
+          <label>Płeć:
+            </label>
+            <!-- Input Type Checkbox -->
+            <label for="inp-1">
+                <input type="radio" name="plec"value="Kobieta" id = "plec">Kobieta</input></label>
+            <label for="inp-2">
+                  <input type="radio" name="plec"value="Mężczyzna" id = "plec">Mężczyzna</input></label>
+            <label for="inp-3">
+                  <input type="radio" name="plec"value="Inna" id = "plec">Inna</input></label>
+        </div>
 
+          <div class="form-control">
+            <label for="age" id="label-age">
+                Wiek:
+            </label>
+ 
+            <!-- Input Type Text -->
+            <input type="text" name="wiek" id="wiek" placeholder="Wprowadź swój wiek" />
+        </div>
+          
+        <div class="form-control">
+          <label>Godzina wykonywania testu:</label>
+          <input type="text" name="godzina" id="godzina">
+        </div>
+          
+        <div class="form-control">
+          <label>Miejsce wykonywania testu:
+            </label>
+            <!-- Input Type Checkbox -->
+            <label for="inp-1">
+                <input type="radio" name="miejsce" value="Home" id = "miejsce">W domu</input></label>
+            <label for="inp-2">
+                  <input type="radio" name="miejsce" value="Public" id = "miejsce">W miejscu publicznym</input></label>
+            <label for="inp-3">
+                  <input type="radio" name="miejsce" value="Inna" id = "plec">Inna</input></label>
+        </div>
+          
+          
+       <div class="form-control">
+         <label>Jak się dziś czujesz? Oceń swoje samopoczucie, gdzie 1 to bardzo źle, a 5 wyśmienice:</label>
+           <input type="range" name="samopoczucie" value="1" id="samopoczucie"
+         min="1" max="5"  oninput="this.nextElementSibling.value = this.value"><output>1</output>
+        </div>
+          
+      
+<div class="form-control">
+         <label>Jak oceniasz swoją zdolność koncentracji:</label>
+           <input type="range" name="koncentracja" value="1" id="koncentracja"
+         min="1" max="5"  oninput="this.nextElementSibling.value = this.value"><output>1</output>
+        </div>
 
-          <label>W skali od 1-5 jak często masz <br> problemy ze skupieniem się</label><br>
-            <input type="radio" name="problemy" value="1" id="problemy">>
-            <label for="1"> 1 (praktycznie wcale)</label><br>
-            <input type="radio" name="problemy" value="2" id="problemy">
-            <label for="2"> 2</label><br>
-            <input type="radio" name="problemy" value="3" id="problemy">
-            <label for="3"> 3</label><br>
-            <input type="radio" name="problemy" value="4" id="problemy">
-            <label for="4"> 4</label><br>
-            <input type="radio" name="problemy" value="5" id="problemy">
-            <label for="5"> 5 (wszystko mnie rozprasza)</label><br>
-        </p>
-   <p>
-          <label>Czy uważasz, że pora dnia wpływa na koncentrację?</label><br>
+ <div class="form-control">
+         <label>W skali od 1-5 jak często masz  problemy ze skupieniem się:</label>
+           <input type="range" name="problemy" value="1" id="problemy"
+         min="1" max="5"  oninput="this.nextElementSibling.value = this.value"><output>1</output>
+        </div>         
+
+     
+          
+   <div class="form-control">
+          <label>Czy uważasz, że pora dnia wpływa na koncentrację?</label>
           <label>
             <input type="radio" name="pora_dnia" value="Tak" id="pora_dnia">
             Tak
-          </label><br>
+          </label>
           <label>
             <input type="radio" name="pora_dnia" value="Nie" id="pora_dnia">
             Nie
           </label>
-        </p>
-        <p>
-          <label>Czy uważasz, że miejsce wpływa na koncentrację?</label><br>
+        </div>
+          
+        <div class="form-control">
+          <label>Czy uważasz, że miejsce wpływa na koncentrację?</label>
           <label>
             <input type="radio" name="miejsce_koncentracja" value="Tak" id="miejsce_koncentracja">
             Tak
-          </label><br>
+          </label>
           <label>
             <input type="radio" name="miejsce_koncentracja" value="Nie" id="miejsce_koncentracja">
             Nie
           </label>
-        </p>
-        <br>
+        </div>
+          
+        
         <a href="/page4">
           <button  type="submit"'>Następna strona</button> 
         </a>
-        <br>
+        
       </div>
       <footer>
-        <br>
+        
         <p>2023 © Szczodrowski && Makowiecki</p>
       </footer>
     </form>
+      </form>
   </body>
 </html>
