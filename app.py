@@ -20,7 +20,7 @@ db.init_app(app)
 
 @app.route("/")
 def page0():
-  return render_template('home.html')
+  return render_template('colors.html')
 
 
 @app.route("/page2")

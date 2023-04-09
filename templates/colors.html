@@ -42,11 +42,18 @@
       var attempts = 0;
       
       var timer;
+         var lastColor;
 
-      function getColor() {
+       function getColor() {
+        var color;
+        do {
+          color = randomColor();
+        } while (color === lastColor);
+        lastColor = color;
+
         $.getJSON('/get_color', function(data) {
           $('#color-name').text(data);
-          $('#color-name').css('color', randomColor());
+          $('#color-name').css('color', getRGB(color));
         });
       }
 
@@ -72,8 +79,16 @@
         return color;
       }
 
-      function startTimer() {
+     function startTimer() {
         timer = setTimeout(function() {
+          // Sprawdzanie, czy nazwa koloru odpowiada rzeczywistemu kolorowi
+          var color = $('#color-name').text().toLowerCase();
+          var textColor = $('#color-name').css('color');
+          if (textColor == getRGB(color)) {
+            attempts++;
+            $('#result').text('Score: ' + score + '/' + attempts);
+          }
+          
           getColor();
           startTimer();
         }, 2000);
@@ -85,25 +100,28 @@
 
 
 
-      function checkAnswer() {
-        var color = $('#color-name').text().toLowerCase();
-        var textColor = $('#color-name').css('color');
+  function checkAnswer() {
+  var color = $('#color-name').text().toLowerCase();
+  var textColor = $('#color-name').css('color');
 
-
-        if (textColor === getRGB(color)) {
-          score++;
-        }
-        attempts++;
-        $('#result').text('Score: ' + score + '/' + attempts);
-      
-      if (attempts === 5) {
-				alert('You have reached 5 attempts. Your score is ' + score + '/' + attempts);
-				score = 0;
-				attempts = 0;
-				counter = 0;
-				$('#result').text('');
-			}
-      }
+  if (textColor === getRGB(color)) {
+    score++;
+  }
+  attempts++;
+  $('#result').text('Score: ' + score + '/' + attempts);
+  
+  if (attempts === 5) {
+    alert('You have reached 5 attempts. Your score is ' + score + '/' + attempts);
+    score = 0;
+    attempts = 0;
+    counter = 0;
+    $('#result').text('');
+  }
+  
+  stopTimer();
+  getColor();
+  startTimer();
+}
       $('#color-button').click(checkAnswer);
       getColor();
       startTimer();
@@ -114,7 +132,7 @@
       });
     </script>
     <br>
-    <a href = "/opis2"
+    <a href = "/opis2">
     <button>Dalej</button>
     </a>
   </body>
