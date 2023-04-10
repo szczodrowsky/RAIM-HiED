@@ -17,9 +17,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('db_conn')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+
 @app.route("/")
 def page0():
-  return render_template('opis1.html')
+  return render_template('home.html')
 
 
 @app.route("/page2")
@@ -35,6 +36,7 @@ def data_to_db():
       wiek = request.form['wiek'],
       godzina = request.form['godzina'],
       miejsce = request.form['miejsce'],
+      samopoczucie =request.form['samopoczucie'],
       koncentracja = request.form['koncentracja'],
       problemy = request.form['problemy'],
       pora_dnia = request.form['pora_dnia'],
@@ -44,6 +46,7 @@ def data_to_db():
                     wiek=wiek,
                     godzina=godzina,
                     miejsce=miejsce,
+                    samopoczucie=samopoczucie,
                     koncentracja=koncentracja,
                     problemy=problemy,
                     pora_dnia=pora_dnia,
