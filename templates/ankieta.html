@@ -16,11 +16,11 @@
             </label>
             <!-- Input Type Checkbox -->
             <label for="inp-1">
-                <input type="radio" name="plec"value="Kobieta" id = "plec">Kobieta</input></label>
+                <input type="radio" name="plec"value="Kobieta" id = "plec" required >Kobieta</input></label>
             <label for="inp-2">
-                  <input type="radio" name="plec"value="Mężczyzna" id = "plec">Mężczyzna</input></label>
+                  <input type="radio" name="plec"value="Mężczyzna" id = "plec" required >Mężczyzna</input></label>
             <label for="inp-3">
-                  <input type="radio" name="plec"value="Inna" id = "plec">Inna</input></label>
+                  <input type="radio" name="plec"value="Inna" id = "plec" required >Inna</input></label>
         </div>
 
           <div class="form-control">
@@ -29,12 +29,12 @@
             </label>
  
             <!-- Input Type Text -->
-            <input type="text" name="wiek" id="wiek" placeholder="Wprowadź swój wiek" />
+            <input type="text" name="wiek" id="wiek" placeholder="Wprowadź swój wiek" required  />
         </div>
           
         <div class="form-control">
           <label>Godzina wykonywania testu:</label>
-          <input type="text" name="godzina" id="godzina">
+          <input type="text" name="godzina" id="godzina" required >
         </div>
           
         <div class="form-control">
@@ -42,31 +42,31 @@
             </label>
             <!-- Input Type Checkbox -->
             <label for="inp-1">
-                <input type="radio" name="miejsce" value="Home" id = "miejsce">W domu</input></label>
+                <input type="radio" name="miejsce" value="Home" id = "miejsce" required >W domu</input></label>
             <label for="inp-2">
-                  <input type="radio" name="miejsce" value="Public" id = "miejsce">W miejscu publicznym</input></label>
+                  <input type="radio" name="miejsce" value="Public" id = "miejsce" required >W miejscu publicznym</input></label>
             <label for="inp-3">
-                  <input type="radio" name="miejsce" value="Inna" id = "plec">Inna</input></label>
+                  <input type="radio" name="miejsce" value="Inna" id = "plec" required >Inna</input></label>
         </div>
           
           
        <div class="form-control">
          <label>Jak się dziś czujesz? Oceń swoje samopoczucie, gdzie 1 to bardzo źle, a 5 wyśmienice:</label>
            <input type="range" name="samopoczucie" value="1" id="samopoczucie"
-         min="1" max="5"  oninput="this.nextElementSibling.value = this.value"><output>1</output>
+         min="1" max="5"  oninput="this.nextElementSibling.value = this.value" required ><output>1</output>
         </div>
           
       
 <div class="form-control">
          <label>Jak oceniasz swoją zdolność koncentracji:</label>
            <input type="range" name="koncentracja" value="1" id="koncentracja"
-         min="1" max="5"  oninput="this.nextElementSibling.value = this.value"><output>1</output>
+         min="1" max="5"  oninput="this.nextElementSibling.value = this.value" required ><output>1</output>
         </div>
 
  <div class="form-control">
          <label>W skali od 1-5 jak często masz  problemy ze skupieniem się:</label>
            <input type="range" name="problemy" value="1" id="problemy"
-         min="1" max="5"  oninput="this.nextElementSibling.value = this.value"><output>1</output>
+         min="1" max="5"  oninput="this.nextElementSibling.value = this.value" required ><output>1</output>
         </div>         
 
      
@@ -74,11 +74,11 @@
    <div class="form-control">
           <label>Czy uważasz, że pora dnia wpływa na koncentrację?</label>
           <label>
-            <input type="radio" name="pora_dnia" value="Tak" id="pora_dnia">
+            <input type="radio" name="pora_dnia" value="Tak" id="pora_dnia" required >
             Tak
           </label>
           <label>
-            <input type="radio" name="pora_dnia" value="Nie" id="pora_dnia">
+            <input type="radio" name="pora_dnia" value="Nie" id="pora_dnia" required >
             Nie
           </label>
         </div>
@@ -86,11 +86,11 @@
         <div class="form-control">
           <label>Czy uważasz, że miejsce wpływa na koncentrację?</label>
           <label>
-            <input type="radio" name="miejsce_koncentracja" value="Tak" id="miejsce_koncentracja">
+            <input type="radio" name="miejsce_koncentracja" value="Tak" id="miejsce_koncentracja" required >
             Tak
           </label>
           <label>
-            <input type="radio" name="miejsce_koncentracja" value="Nie" id="miejsce_koncentracja">
+            <input type="radio" name="miejsce_koncentracja" value="Nie" id="miejsce_koncentracja" required >
             Nie
           </label>
         </div>
