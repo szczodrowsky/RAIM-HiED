@@ -1,14 +1,16 @@
-from flask import Flask, render_template, jsonify, request, redirect
+from flask import Flask, render_template, jsonify, request, redirect, session
 import random
 import os
 from flask_sqlalchemy import SQLAlchemy
 from user import user
+from results import results
 
 db = SQLAlchemy()
 
 #Data Base
 
 app = Flask(__name__)
+app.secret_key ="ksemwetipg"
 
 db = SQLAlchemy()
 
@@ -20,7 +22,7 @@ db.init_app(app)
 
 @app.route("/")
 def page0():
-  return render_template('home.html')
+  return render_template('colors.html')
 
 
 @app.route("/page2")
@@ -53,6 +55,8 @@ def data_to_db():
                     miejsce_koncentracja=miejsce_koncentracja)
     db.session.add(new_user)
     db.session.commit()
+    session['user_id'] = new_user.id
+
     return redirect('/page4')
   except Exception as e:
     db.session.rollback()
@@ -63,15 +67,35 @@ def data_to_db():
 @app.route('/page4')
 def page4():
   return render_template('opis1.html')
+  
 
-
-@app.route('/colors')
+@app.route('/page5')
 def page5():
   return render_template('colors.html')
 
+@app.route('/page6', methods=['GET', 'POST'])
+def results_to_db():
+  try:
+    if request.method == 'POST':
+      score1 = request.json['score1']
+     
+    
+    new_test = results(user_id=session['user_id'],score1=score1)
+    db.session.add(new_test)
+    db.session.commit()
+    
+    return jsonify({'success': True})
 
-@app.route("/opis2")
-def page6():
+
+   
+  except Exception as e:
+    db.session.rollback()
+    print(str(e))
+    return redirect('/erorr')
+  
+
+@app.route("/page7")
+def page7():
   return render_template('opis2.html')
 
 
@@ -102,12 +126,12 @@ def get_data():
 
 
 @app.route("/kolka")
-def page7():
+def page8():
   return render_template('kolka.html')
 
 
 @app.route("/final")
-def page8():
+def page9():
   return render_template('final.html')
 
 

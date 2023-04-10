@@ -31,9 +31,10 @@
     </style>
   </head>
   <body>
+    
     <h1>Stroop Test</h1>
     <p id="color-name"></p>
-    <button id="color-button">Press when colors match</button>
+    <button id="color-button">Press when colors match</button> 
     <p id="result"></p>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -84,10 +85,21 @@
           // Sprawdzanie, czy nazwa koloru odpowiada rzeczywistemu kolorowi
           var color = $('#color-name').text().toLowerCase();
           var textColor = $('#color-name').css('color');
-          if (textColor == getRGB(color)) {
+          if (textColor == getRGB(color) && attempts <5) {
             attempts++;
-            $('#result').text('Score: ' + score + '/' + attempts);
-          }
+ 
+          }else if (attempts === 5) {
+        stopTimer();
+        $('#result').text('');
+         $('#color-button').attr('disabled', true);
+         $('#next-button').attr('disabled', false);
+        $('#result').text('Score: ' + score + '/' + attempts);
+   
+              
+  }else{
+    $('#result').text('Score: ' + score + '/' + attempts);
+  }
+          
           
           getColor();
           startTimer();
@@ -101,27 +113,44 @@
 
 
   function checkAnswer() {
-  var color = $('#color-name').text().toLowerCase();
-  var textColor = $('#color-name').css('color');
+    var color = $('#color-name').text().toLowerCase();
+    var textColor = $('#color-name').css('color');
 
-  if (textColor === getRGB(color)) {
-    score++;
-  }
-  attempts++;
-  $('#result').text('Score: ' + score + '/' + attempts);
-  
-  if (attempts === 5) {
-    alert('You have reached 5 attempts. Your score is ' + score + '/' + attempts);
-    score = 0;
-    attempts = 0;
-    counter = 0;
-    $('#result').text('');
-  }
-  
-  stopTimer();
-  getColor();
-  startTimer();
+   
+
+    if (textColor === getRGB(color)) {
+        score++;
+    }
+    attempts++;
+    $('#result').text('Score: ' + score + '/' + attempts);
+
+    if (attempts === 5) {
+        stopTimer();
+        $('#result').text('');
+         $('#color-button').attr('disabled', true);
+         $('#next-button').attr('disabled', false);
+        $('#result').text('Score: ' + score + '/' + attempts);
+        // Add score to database
+        $.ajax({
+            type: 'POST',
+            url: '/page6',
+            contentType: 'application/json',
+            data: JSON.stringify({'score1': score}),
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    } else {
+       $('#color-button').attr('disabled', true);
+setTimeout(function() {
+    $('#color-button').removeAttr('disabled');
+}, 1000);
+        stopTimer();
+        getColor();
+        startTimer();
+    }
 }
+
       $('#color-button').click(checkAnswer);
       getColor();
       startTimer();
@@ -132,8 +161,8 @@
       });
     </script>
     <br>
-    <a href = "/opis2">
-    <button>Dalej</button>
+    <a href = "/page7">
+    <button disabled id="next-button">Dalej</button>
     </a>
   </body>
 </html>

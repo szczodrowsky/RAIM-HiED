@@ -51,7 +51,7 @@
           
           
        <div class="form-control">
-         <label>Jak się dziś czujesz? Oceń swoje samopoczucie, gdzie 1 to bardzo źle, a 5 wyśmienice:</label>
+         <label>Jak się dziś czujesz? Oceń swoje samopoczucie, gdzie 1 to bardzo źle, a 5 wyśmienicie:</label>
            <input type="range" name="samopoczucie" value="1" id="samopoczucie"
          min="1" max="5"  oninput="this.nextElementSibling.value = this.value" required ><output>1</output>
         </div>
@@ -64,7 +64,7 @@
         </div>
 
  <div class="form-control">
-         <label>W skali od 1-5 jak często masz  problemy ze skupieniem się:</label>
+         <label>W skali od 1 do 5 jak często masz problemy ze skupieniem się, gdzie 1 to wcale, a 5 bardzo często:</label>
            <input type="range" name="problemy" value="1" id="problemy"
          min="1" max="5"  oninput="this.nextElementSibling.value = this.value" required ><output>1</output>
         </div>         
@@ -81,6 +81,10 @@
             <input type="radio" name="pora_dnia" value="Nie" id="pora_dnia" required >
             Nie
           </label>
+       <label>
+            <input type="radio" name="pora_dnia" value="Nie mam zdania" id="pora_dnia" required >
+            Nie mam zdania
+          </label>
         </div>
           
         <div class="form-control">
@@ -92,6 +96,10 @@
           <label>
             <input type="radio" name="miejsce_koncentracja" value="Nie" id="miejsce_koncentracja" required >
             Nie
+          </label>
+           <label>
+            <input type="radio" name="miejsce_koncentracja" value="Nie mam zdania" id="pora_dnia" required >
+            Nie mam zdania
           </label>
         </div>
           
