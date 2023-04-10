@@ -2,8 +2,8 @@ from flask import Flask, render_template, jsonify, request, redirect, session
 import random
 import os
 from flask_sqlalchemy import SQLAlchemy
-from user import user
-from results import results
+from user import user, results #zmiana importu
+#from results import results
 
 db = SQLAlchemy()
 
@@ -12,7 +12,7 @@ db = SQLAlchemy()
 app = Flask(__name__)
 app.secret_key ="ksemwetipg"
 
-db = SQLAlchemy()
+
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('db_conn')
 
@@ -22,11 +22,12 @@ db.init_app(app)
 
 @app.route("/")
 def page0():
-  return render_template('colors.html')
+  return render_template('home.html')
 
 
 @app.route("/page2")
 def page2():
+  session.clear()
   return render_template('ankieta.html')
 
 
@@ -79,8 +80,7 @@ def results_to_db():
     if request.method == 'POST':
       score1 = request.json['score1']
      
-    
-    new_test = results(user_id=session['user_id'],score1=score1)
+    new_test = results(koncentracja_id=session['user_id'],score1=score1)
     db.session.add(new_test)
     db.session.commit()
     

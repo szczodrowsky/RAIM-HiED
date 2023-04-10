@@ -43,7 +43,7 @@
       var attempts = 0;
       
       var timer;
-         var lastColor;
+      var lastColor;
 
        function getColor() {
         var color;
@@ -85,15 +85,15 @@
           // Sprawdzanie, czy nazwa koloru odpowiada rzeczywistemu kolorowi
           var color = $('#color-name').text().toLowerCase();
           var textColor = $('#color-name').css('color');
-          if (textColor == getRGB(color) && attempts <5) {
+          if (textColor == getRGB(color) && attempts < 5) {
             attempts++;
- 
+            $('#result').text('Score: ' + score + '/' + attempts);
           }else if (attempts === 5) {
-        stopTimer();
-        $('#result').text('');
-         $('#color-button').attr('disabled', true);
-         $('#next-button').attr('disabled', false);
-        $('#result').text('Score: ' + score + '/' + attempts);
+            stopTimer();
+            $('#result').text('');
+            $('#color-button').attr('disabled', true);
+            $('#next-button').attr('disabled', false);
+            $('#result').text('Score: ' + score + '/' + attempts);
    
               
   }else{
@@ -117,7 +117,6 @@
     var textColor = $('#color-name').css('color');
 
    
-
     if (textColor === getRGB(color)) {
         score++;
     }
@@ -127,8 +126,8 @@
     if (attempts === 5) {
         stopTimer();
         $('#result').text('');
-         $('#color-button').attr('disabled', true);
-         $('#next-button').attr('disabled', false);
+        $('#color-button').attr('disabled', true);
+        $('#next-button').attr('disabled', false);
         $('#result').text('Score: ' + score + '/' + attempts);
         // Add score to database
         $.ajax({
