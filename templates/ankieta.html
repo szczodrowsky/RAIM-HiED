@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formularz</title>
+    <script>
+        if (window.history && window.history.pushState) {
+            window.history.pushState('forward', null, './#forward');
+            $(window).on('popstate', function() {
+                window.history.pushState('forward', null, './#forward');
+            });
+        }
+    </script>
     <link rel="stylesheet" href="static/style.css">
   </head>
   <body> 
@@ -29,7 +37,7 @@
             </label>
  
             <!-- Input Type Text -->
-            <input type="text" name="wiek" id="wiek" placeholder="Wprowadź swój wiek" required  />
+            <input type="text" name="wiek" id="wiek" placeholder="Wprowadź swój wiek" min="1" max="100" required  </input>
         </div>
           
         <div class="form-control">

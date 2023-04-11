@@ -16,11 +16,23 @@ class user(db.Model):
   problemy = db.Column(db.String(250), nullable=False)
   pora_dnia = db.Column(db.String(250), nullable=False)
   miejsce_koncentracja = db.Column(db.String(250), nullable=False)
+  
+  
 
 #to przeklejone z results
 class results(db.Model):
   __tablename__ = 'koncentracja_wyniki'
 
   id = db.Column(db.Integer, primary_key=True)
-  koncentracja_id = db.Column(db.Integer, db.ForeignKey('koncentracja_wyniki.koncentracja_id'), nullable=False) #tu zmiana tego 'koncentracja_wyniki.koncentracja_id'
+  koncentracja_id = db.Column(db.Integer, db.ForeignKey('koncentracja.id'), nullable=False)
   score1 = db.Column(db.Text)
+
+
+class kolka(db.Model):
+  __tablename__ = 'kolka_wyniki'
+
+  id= db.Column(db.Integer, primary_key=True)
+  koncentracja_id = db.Column(db.Integer, db.ForeignKey('koncentracja.id'), nullable=False) 
+  score2 = db.Column(db.Text)
+
+

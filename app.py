@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, session
 import random
 import os
 from flask_sqlalchemy import SQLAlchemy
-from user import user, results #zmiana importu
+from user import user, results, kolka  #zmiana importu
 #from results import results
 
 db = SQLAlchemy()
@@ -10,9 +10,7 @@ db = SQLAlchemy()
 #Data Base
 
 app = Flask(__name__)
-app.secret_key ="ksemwetipg"
-
-
+app.secret_key = "ksemwetipg"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('db_conn')
 
@@ -22,7 +20,7 @@ db.init_app(app)
 
 @app.route("/")
 def page0():
-  return render_template('home.html')
+  return render_template('ankieta.html')
 
 
 @app.route("/page2")
@@ -39,7 +37,7 @@ def data_to_db():
       wiek = request.form['wiek'],
       godzina = request.form['godzina'],
       miejsce = request.form['miejsce'],
-      samopoczucie =request.form['samopoczucie'],
+      samopoczucie = request.form['samopoczucie'],
       koncentracja = request.form['koncentracja'],
       problemy = request.form['problemy'],
       pora_dnia = request.form['pora_dnia'],
@@ -68,31 +66,30 @@ def data_to_db():
 @app.route('/page4')
 def page4():
   return render_template('opis1.html')
-  
+
 
 @app.route('/page5')
 def page5():
   return render_template('colors.html')
+
 
 @app.route('/page6', methods=['GET', 'POST'])
 def results_to_db():
   try:
     if request.method == 'POST':
       score1 = request.json['score1']
-     
-    new_test = results(koncentracja_id=session['user_id'],score1=score1)
+
+    new_test = results(koncentracja_id=session['user_id'], score1=score1)
     db.session.add(new_test)
     db.session.commit()
-    
+
     return jsonify({'success': True})
 
-
-   
   except Exception as e:
     db.session.rollback()
     print(str(e))
     return redirect('/erorr')
-  
+
 
 @app.route("/page7")
 def page7():
@@ -125,13 +122,31 @@ def get_data():
   return jsonify(data)
 
 
-@app.route("/kolka")
+@app.route("/page8")
 def page8():
   return render_template('kolka.html')
 
+@app.route('/page9', methods=['POST'])
+def kolka_to_db():
+  try:
+    score2 = None
+    if request.method == 'POST':
+      score2 = request.json['score2']
+
+    new_kolka = kolka(koncentracja_id=session['user_id'], score2=score2)
+    db.session.add(new_kolka)
+    db.session.commit()
+
+    return jsonify({'success': True})
+
+  except Exception as e:
+    db.session.rollback()
+    print(str(e))
+    return redirect('/erorr')
+
 
 @app.route("/final")
-def page9():
+def page10():
   return render_template('final.html')
 
 

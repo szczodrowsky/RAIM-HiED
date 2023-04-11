@@ -13,7 +13,7 @@
     <div id="circle2" class="circle"></div>
   </div>
   <div class="command"></div>
-  <div id="score"></div>
+  <p id="result"></p>
 
     <script>
         var score = 0;
@@ -42,41 +42,52 @@
   var circle1 = document.getElementById('circle1');
   var circle2 = document.getElementById('circle2');
 
-         if (attempts >= 5) {
-    circle1.removeEventListener('click', handleCircleClick);
-    circle2.removeEventListener('click', handleCircleClick);
-    alert('Liczba prób została wyczerpana.');
-    return;
-  }
+   if (attempts === 5) {
+     
+ $('#circle1, #circle2').off('click');
+  // add the final score to the database
+  $.ajax({
+    type: "POST",
+    contentType: "application/json",
+    url: "/page9",
+    data: JSON.stringify({'score2': score}),
+    dataType: "json",
+    success: function(result){
+      console.log(result);
+    },
+    error: function(e){
+      console.log("Error: ", e);
+    }
+  });
+} else {
+  attempts += 1;
+
        
   if (command === "Kliknij większe koło") {
     if (clickedCircleId === 'circle1') {
       if (isLarger && data['sizes'][0] > data['sizes'][1]) {
         score += 1;
-        attempts+=1;
       }
     } else {
       if (!isLarger && data['sizes'][1] > data['sizes'][0]) {
         score += 1;
-        attempts+=1;
       }
     }
   } else if (command === "Wybierz większą cyfrę") {
     if (clickedCircleId === 'circle1') {
       if (isLarger && data['numbers'][0] > data['numbers'][1]) {
         score += 1;
-        attempts+=1;
       }
     } else {
       if (!isLarger && data['numbers'][1] > data['numbers'][0]) {
         score += 1;
-        attempts+=1;
       }
     }
   } 
+       }
 
-  var scoreDisplay = document.getElementById('score');
-  scoreDisplay.innerHTML = "Wynik: " + score;
+  $('#result').text('Score: ' + score + '/' + attempts);
+       console.log(score)
 }
 
 
@@ -109,6 +120,12 @@
           
             getData();
         });
+
+              if (window.history && window.history.pushState) {
+            window.history.pushState('forward', null, './#forward');
+            $(window).on('popstate', function() {
+                window.history.pushState('forward', null, './#forward');
+            });
     </script>
     <a href="/final">
       <button>Wyślij</button>
@@ -148,7 +165,7 @@
   background-color: darkgray;
 }
 
-#command, #score{
+#command, #result{
   font-size: 36px;
   margin-top: 50px;
   text-align: center;
