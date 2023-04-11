@@ -16,6 +16,9 @@ class user(db.Model):
   problemy = db.Column(db.String(250), nullable=False)
   pora_dnia = db.Column(db.String(250), nullable=False)
   miejsce_koncentracja = db.Column(db.String(250), nullable=False)
+  techniki = db.Column(db.String(250), nullable=False)
+  przerwanie = db.Column(db.String(250), nullable=False)
+  telefon = db.Column(db.String(250), nullable=False)
   
   
 

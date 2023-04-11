@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Stroop Test</title>
     <style>
       body {
@@ -34,14 +35,13 @@
     
     <h1>Stroop Test</h1>
     <p id="color-name"></p>
-    <button id="color-button">Press when colors match</button> 
+    <button id="color-button">Naciśnij, kiedy kolory będą się zgadzać</button> 
     <p id="result"></p>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       var score = 0;
       var attempts = 0;
-      
+      $('#result').text('Wynik: ' + score + '/' + attempts)
       var timer;
       var lastColor;
 
@@ -87,17 +87,17 @@
           var textColor = $('#color-name').css('color');
           if (textColor == getRGB(color) && attempts < 5) {
             attempts++;
-            $('#result').text('Score: ' + score + '/' + attempts);
+            $('#result').text('Wynik: ' + score + '/' + attempts);
           }else if (attempts === 5) {
             stopTimer();
             $('#result').text('');
             $('#color-button').attr('disabled', true);
             $('#next-button').attr('disabled', false);
-            $('#result').text('Score: ' + score + '/' + attempts);
+            $('#result').text('Wynik: ' + score + '/' + attempts);
    
               
   }else{
-    $('#result').text('Score: ' + score + '/' + attempts);
+    $('#result').text('Wynik: ' + score + '/' + attempts);
   }
           
           
@@ -121,14 +121,14 @@
         score++;
     }
     attempts++;
-    $('#result').text('Score: ' + score + '/' + attempts);
+    $('#result').text('Wynik: ' + score + '/' + attempts);
 
-    if (attempts === 5) {
+    if (attempts === 10) {
         stopTimer();
         $('#result').text('');
         $('#color-button').attr('disabled', true);
         $('#next-button').attr('disabled', false);
-        $('#result').text('Score: ' + score + '/' + attempts);
+        $('#result').text('Wynik: ' + score + '/' + attempts);
         // Add score to database
         $.ajax({
             type: 'POST',

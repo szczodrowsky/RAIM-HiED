@@ -18,7 +18,7 @@
     <script>
         var score = 0;
         var attempts =0;
-
+        $('#result').text('Wynik: ' + score + '/' + attempts);
         function getData() {
             $.ajax({
                 url: "/get_data",
@@ -86,7 +86,7 @@
   } 
        }
 
-  $('#result').text('Score: ' + score + '/' + attempts);
+  $('#result').text('Wynik: ' + score + '/' + attempts);
        console.log(score)
 }
 

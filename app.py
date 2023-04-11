@@ -41,7 +41,10 @@ def data_to_db():
       koncentracja = request.form['koncentracja'],
       problemy = request.form['problemy'],
       pora_dnia = request.form['pora_dnia'],
-      miejsce_koncentracja = request.form['miejsce_koncentracja']
+      miejsce_koncentracja = request.form['miejsce_koncentracja'],
+      techniki  = request.form['techniki'],
+      przerwanie  = request.form['przerwanie'],
+      telefon = request.form['telefon']
 
     new_user = user(plec=plec,
                     wiek=wiek,
@@ -51,7 +54,11 @@ def data_to_db():
                     koncentracja=koncentracja,
                     problemy=problemy,
                     pora_dnia=pora_dnia,
-                    miejsce_koncentracja=miejsce_koncentracja)
+                    miejsce_koncentracja=miejsce_koncentracja,
+                    techniki=techniki,
+                    przerwanie=przerwanie,
+                    telefon = telefon
+                   )
     db.session.add(new_user)
     db.session.commit()
     session['user_id'] = new_user.id
