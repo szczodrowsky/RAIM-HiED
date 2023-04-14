@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+      <script>history.pushState(null, null, document.URL);
+
+window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});</script>
     <title>Test</title>
    <style>
      
@@ -207,12 +212,11 @@
             getData();
         });
 
-              if (window.history && window.history.pushState) {
-            window.history.pushState('forward', null, './#forward');
-            $(window).on('popstate', function() {
-                window.history.pushState('forward', null, './#forward');
-            });
-              }
+             history.pushState(null, null, document.URL);
+
+window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});
     </script>
 
       </form>

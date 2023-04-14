@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <script>history.pushState(null, null, document.URL);
+
+window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formularz</title>
-    <script>
-        if (window.history && window.history.pushState) {
-            window.history.pushState('forward', null, './#forward');
-            $(window).on('popstate', function() {
-                window.history.pushState('forward', null, './#forward');
-            });
-        }
     </script>
     <link rel="stylesheet" href="static/style.css">
   </head>

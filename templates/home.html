@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <script>history.pushState(null, null, document.URL);
+
+window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <meta charset="utf-8">

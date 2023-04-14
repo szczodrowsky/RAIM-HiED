@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>history.pushState(null, null, document.URL);
+
+window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Test Stroopa</title>
       
@@ -118,7 +123,7 @@
         // Sprawdzanie, czy nazwa koloru odpowiada rzeczywistemu kolorowi
         var color = $('#color-name').text().toLowerCase();
         var textColor = $('#color-name').css('color');
-        if (textColor == getRGB(color)) {
+        if (textColor == getRGB(color) && !$('#color-button').is(':disabled')) {
             attempts++;
             stopTimer();
             $('#result').text('Wynik: ' + score + '/' + attempts);
@@ -143,6 +148,7 @@
 
 
  function checkAnswer(event) {
+    
     event.preventDefault();
     var color = $('#color-name').text().toLowerCase();
     var textColor = $('#color-name').css('color');
@@ -176,9 +182,8 @@
         $('#color-button').attr('disabled', true);
         setTimeout(function() {
             $('#color-button').removeAttr('disabled');
-        }, 1200);
+        }, 1400);
         stopTimer();
-
         startTimer();
     }
 }
@@ -192,12 +197,11 @@
         startTimer();
       });
 
-       if (window.history && window.history.pushState) {
-            window.history.pushState('forward', null, './#forward');
-            $(window).on('popstate', function() {
-                window.history.pushState('forward', null, './#forward');
-            });
-        }
+      history.pushState(null, null, document.URL);
+
+  window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});
  </script>
 
   </form>

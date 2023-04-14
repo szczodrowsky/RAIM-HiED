@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+        <script>history.pushState(null, null, document.URL);
+
+window.addEventListener('popstate', function(event) {
+  history.pushState(null, null, document.URL);
+});</script>
      <style>
      body {
         display: flex;
@@ -13,19 +18,10 @@
       }
      
 
-     command, #result {
-        font-size: 48px;
-        margin-top: 50px;
-      }
+  
 
  
-     [disabled] {
-       background-color:##808080;
-        cursor: default;
-      }
-       /* Styling the Body element i.e. Color,
-        Font, Alignment */
-
+   
 
 
  
@@ -54,52 +50,21 @@
             margin-bottom: 20px;
         }
 
-      #next-button:disabled{}
-
-     .circle-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px;
-  border-radius: 50%;
-  background-color: gray;
-  width: 300px;
-  height: 300px;
-  font-size: 120px;
-  cursor: pointer;
-}
-
-.circle:hover {
-  background-color: darkgray;
-}
    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Koncentracja</title>
-        <script>
-        if (window.history && window.history.pushState) {
-            window.history.pushState('forward', null, './#forward');
-            $(window).on('popstate', function() {
-                window.history.pushState('forward', null, './#forward');
-            });
-        }
+      
     </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body> 
-    <form
+    <form>
     <div class="container">
      <h2>Dziękujemy za poświęcony czas</h2>
 
 
-       
+
     </div>
       </form>
     <footer>
