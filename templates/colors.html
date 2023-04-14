@@ -2,15 +2,14 @@
 <html>
   <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Stroop Test</title>
+    <title>Test Stroopa</title>
+      
+      
     <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        font-size: 36px;
+   
+       [disabled] {
+       background-color:##808080;
+        cursor: default;
       }
 
       #color-name {
@@ -25,20 +24,54 @@
         padding: 20px 50px;
       }
 
+        #next-button {
+            background-color: #FFF;
+            border: 1px solid #777;
+            color: Black;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 21px;
+            display: block, center;
+            width: 25%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+      }
+
       #result {
         font-size: 48px;
         margin-top: 50px;
       }
+
+      h1{
+        font-size: 48px;
+      }
+
+       body {
+            background-color: #7B68EE;
+            font-family: Verdana;
+            text-align: center;
+        }
+      
+        /* Styling the Form (Color, Padding, Shadow) */
+       form {
+            background-color: #FFF;
+            font-size: 21px; 
+            font-family: "Times New Roman", Times, serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
     </style>
   </head>
   <body>
-    
-    <h1>Stroop Test</h1>
+  <form>
+    <h1>Test Stroopa</h1>
+      
     <p id="color-name"></p>
     <button id="color-button">Naciśnij, kiedy kolory będą się zgadzać</button> 
-    <p id="result"></p>
-
-    <script>
+    <p id="result">Wynik: 0/0</p>
+<script>
       var score = 0;
       var attempts = 0;
       $('#result').text('Wynik: ' + score + '/' + attempts)
@@ -81,30 +114,27 @@
       }
 
      function startTimer() {
-        timer = setTimeout(function() {
-          // Sprawdzanie, czy nazwa koloru odpowiada rzeczywistemu kolorowi
-          var color = $('#color-name').text().toLowerCase();
-          var textColor = $('#color-name').css('color');
-          if (textColor == getRGB(color) && attempts < 5) {
+    timer = setTimeout(function() {
+        // Sprawdzanie, czy nazwa koloru odpowiada rzeczywistemu kolorowi
+        var color = $('#color-name').text().toLowerCase();
+        var textColor = $('#color-name').css('color');
+        if (textColor == getRGB(color)) {
             attempts++;
+            stopTimer();
             $('#result').text('Wynik: ' + score + '/' + attempts);
-          }else if (attempts === 5) {
+        } 
+        if (attempts == 5) {
             stopTimer();
             $('#result').text('');
             $('#color-button').attr('disabled', true);
             $('#next-button').attr('disabled', false);
             $('#result').text('Wynik: ' + score + '/' + attempts);
-   
-              
-  }else{
-    $('#result').text('Wynik: ' + score + '/' + attempts);
-  }
-          
-          
-          getColor();
-          startTimer();
-        }, 2000);
-      }
+        } else {
+            getColor();
+        }
+    }, 1000);
+}
+
 
       function stopTimer() {
         clearTimeout(timer);
@@ -112,24 +142,27 @@
 
 
 
-  function checkAnswer() {
+ function checkAnswer(event) {
+    event.preventDefault();
     var color = $('#color-name').text().toLowerCase();
     var textColor = $('#color-name').css('color');
 
-   
-    if (textColor === getRGB(color)) {
+    if (textColor == getRGB(color)) {
+        attempts++;
         score++;
+    } else {
+        attempts++;
     }
-    attempts++;
+
     $('#result').text('Wynik: ' + score + '/' + attempts);
 
-    if (attempts === 10) {
+    if (attempts == 5) {
         stopTimer();
         $('#result').text('');
         $('#color-button').attr('disabled', true);
         $('#next-button').attr('disabled', false);
         $('#result').text('Wynik: ' + score + '/' + attempts);
-        // Add score to database
+        // Dodawanie wyniku do bazy
         $.ajax({
             type: 'POST',
             url: '/page6',
@@ -140,12 +173,12 @@
             }
         });
     } else {
-       $('#color-button').attr('disabled', true);
-setTimeout(function() {
-    $('#color-button').removeAttr('disabled');
-}, 1000);
+        $('#color-button').attr('disabled', true);
+        setTimeout(function() {
+            $('#color-button').removeAttr('disabled');
+        }, 1200);
         stopTimer();
-        getColor();
+
         startTimer();
     }
 }
@@ -165,10 +198,11 @@ setTimeout(function() {
                 window.history.pushState('forward', null, './#forward');
             });
         }
-    </script>
-    <br>
+ </script>
+
+  </form>
     <a href = "/page7">
-    <button disabled id="next-button">Dalej</button>
+     <button disabled id="next-button">Dalej</button>
     </a>
   </body>
 </html>

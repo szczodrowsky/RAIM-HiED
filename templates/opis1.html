@@ -15,36 +15,97 @@
         }
     </script>
     <style>
-       button {
-            background-color: #7B68EE;
+     body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        background-color: #7B68EE;
+        font-family: Verdana;
+        text-align: center;
+      }
+     
+
+     command, #result {
+        font-size: 48px;
+        margin-top: 50px;
+      }
+
+ 
+     [disabled] {
+       background-color:##808080;
+        cursor: default;
+      }
+       /* Styling the Body element i.e. Color,
+        Font, Alignment */
+
+
+
+ 
+        /* Styling the Form (Color, Padding, Shadow) */
+        form {
+            background-color: #fff;
+            font-size: 21px; 
+            font-family: "Times New Roman", Times, serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+ 
+        /* Styling Button */
+        #next-button {
+           background-color: #FFF;
             border: 1px solid #777;
-            color: White;
+            color: Black;
             border-radius: 2px;
             font-family: inherit;
             font-size: 21px;
             display: block, center;
-            width: 50%;
+            width: 25%;
             margin-top: 50px;
             margin-bottom: 20px;
         }
-    </style>
+
+      #next-button:disabled{}
+
+     .circle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  width: 300px;
+  height: 300px;
+  font-size: 120px;
+  cursor: pointer;
+}
+
+.circle:hover {
+  background-color: darkgray;
+}
+   </style>
   </head>
   <body> 
      <form id="form">
-      <p> Podczas tego prostego testu twoim zadaniem jest wciśnięcie guzika w momencie,<br>
-       w którym kolor tekstu pokryje się z jego znaczeniem.<br>
+      <p> Podczas testu Twoim zadaniem będzie wciśnięcie guzika w chwili,
+       gdy nazwa koloru pokryje się z kolorem w którym jest ona wyświetlana (np. różowy napisane na różowe). Przeoczenie poprawnej kombinacji poskutkuje gorszym wynikiem.
       </p>
      </form>
 
       
        <a href = "/page5">
-      <button> Rozpocznij </button> 
+      <button id="next-button"> Rozpocznij </button> 
        </a>
       
    
-    <footer>
-      <p>2023 Copyright Szczodrowski & Makowiecki</p>
-       
-    </footer>
   </body>
 </html>

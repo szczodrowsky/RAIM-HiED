@@ -20,14 +20,8 @@ db.init_app(app)
 
 @app.route("/")
 def page0():
-  return render_template('ankieta.html')
-
-
-@app.route("/page2")
-def page2():
-  session.clear()
-  return render_template('ankieta.html')
-
+    session.clear()
+    return render_template('ankieta.html')
 
 @app.route('/page3', methods=['GET', 'POST'])
 def data_to_db():
@@ -67,7 +61,7 @@ def data_to_db():
   except Exception as e:
     db.session.rollback()
     print(str(e))
-    return redirect('/erorr')
+    return redirect('/error')
 
 
 @app.route('/page4')
@@ -95,7 +89,7 @@ def results_to_db():
   except Exception as e:
     db.session.rollback()
     print(str(e))
-    return redirect('/erorr')
+    return redirect('/error')
 
 
 @app.route("/page7")
@@ -149,12 +143,16 @@ def kolka_to_db():
   except Exception as e:
     db.session.rollback()
     print(str(e))
-    return redirect('/erorr')
+    return redirect('/error')
 
 
 @app.route("/final")
 def page10():
   return render_template('final.html')
+
+@app.route('/error')
+def page11():
+    return render_template('home.html')
 
 
 if __name__ == "__main__":

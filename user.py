@@ -22,7 +22,7 @@ class user(db.Model):
   
   
 
-#to przeklejone z results
+
 class results(db.Model):
   __tablename__ = 'koncentracja_wyniki'
 
