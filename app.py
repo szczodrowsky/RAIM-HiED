@@ -21,7 +21,7 @@ db.init_app(app)
 @app.route("/")
 def page0():
     session.clear()
-    return render_template('ankieta.html')
+    return render_template('kolka.html')
 
 @app.route('/page3', methods=['GET', 'POST'])
 def data_to_db():
